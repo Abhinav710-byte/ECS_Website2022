@@ -10,6 +10,11 @@ import Resource from "./components/resource/Resource";
 import Gallery from "./components/Gallery/Gallery";
 import Protected from "./Protected";
 import Spectrum from "./components/spectrum/Spectrum";
+import Chamber from "./components/Chamber/Chamber";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+if (process.env.REACT_APP_NODE_ENV === "production") {
+  disableReactDevTools();
+}
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   onAuthStateChanged(auth, (user) => {
@@ -74,10 +79,15 @@ function App() {
             />
           }
         />
-        {/* <Route
-          path="/SignUp"
-          element={<SignUp setCurrentUser={setCurrentUser} />}
-        /> */}
+        <Route
+          path="/chamber"
+          element={
+            <Chamber
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
       </Routes>
     </>
   );
